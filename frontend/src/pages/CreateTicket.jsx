@@ -16,7 +16,7 @@ function CreateTicket({ fetchTickets }) {
     }
 
     try {
-      await api.post("/tickets", {
+      await api.post("/api/tickets", {
         title,
         category,
         priority,

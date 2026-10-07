@@ -12,7 +12,7 @@ function TicketDetails({ role, fetchTickets }) {
     try {
       console.log("Fetching ticket:", id);
 
-      const res = await api.get(`/tickets/${id}`);
+      const res = await api.get(`/api/tickets/${id}`);
 
       setTicket(res.data);
     } catch (err) {
@@ -30,7 +30,7 @@ function TicketDetails({ role, fetchTickets }) {
 
   const handleResolve = async () => {
     try {
-      const res = await api.patch(`/tickets/${id}`, {
+      const res = await api.patch(`/api/tickets/${id}`, {
         status: "Resolved",
       });
 
@@ -41,7 +41,7 @@ function TicketDetails({ role, fetchTickets }) {
   };
   const handleDelete = async () => {
     try {
-      await api.delete(`/tickets/${id}`);
+      await api.delete(`/api/tickets/${id}`);
       await fetchTickets();
       navigate("/");
     } catch (err) {
@@ -50,7 +50,7 @@ function TicketDetails({ role, fetchTickets }) {
   };
   const handleStatusChange = async (e) => {
     try {
-      const res = await api.patch(`/tickets/${id}`, {
+      const res = await api.patch(`/api/tickets/${id}`, {
         status: e.target.value,
       });
 
@@ -61,7 +61,7 @@ function TicketDetails({ role, fetchTickets }) {
   };
   const handleCategoryChange = async (e) => {
     try {
-      const res = await api.patch(`/tickets/${id}`, {
+      const res = await api.patch(`/api/tickets/${id}`, {
         category: e.target.value,
       });
 
@@ -98,7 +98,6 @@ function TicketDetails({ role, fetchTickets }) {
               </span>
               {role === "user" && (
                 <button
-                  className=""
                   onClick={handleDelete}
                   className="px-3 py-1 rounded-xl bg-indigo-100 text-indigo-700 hover:bg-indigo-200 transition-colors duration-200"
                 >
