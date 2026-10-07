@@ -6,14 +6,14 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
   const login = async (email, password) => {
-    const res = await api.post("/auth/login", {
+    const res = await api.post("/api/auth/login", {
       email,
       password,
     });
 
     localStorage.setItem("auth_token", res.data.token);
-
     setUser(res.data.user);
 
     return res.data.user;
@@ -29,8 +29,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
-        const res = await api.get("/auth/me");
-
+        const res = await api.get("/api/auth/me");
         setUser(res.data);
       } catch (err) {
         localStorage.removeItem("auth_token");
@@ -49,7 +48,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = async (name, email, password) => {
-    const res = await api.post("/auth/register", {
+    const res = await api.post("/api/auth/register", {
       name,
       email,
       password,
@@ -62,6 +61,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const isAuthenticated = !!user;
+
   return (
     <AuthContext.Provider
       value={{
@@ -71,7 +71,7 @@ export const AuthProvider = ({ children }) => {
         register,
         logout,
         loading,
-        isAuthenticated
+        isAuthenticated,
       }}
     >
       {children}
