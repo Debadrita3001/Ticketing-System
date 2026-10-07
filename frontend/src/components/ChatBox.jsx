@@ -12,7 +12,7 @@ export default function ChatBox({ role }) {
   
   const fetchMessages = async () => {
     try {
-      const res = await api.get(`/tickets/${id}/messages`);
+      const res = await api.get(`/api/tickets/${id}/messages`);
       setMessages(res.data);
     } catch (err) {
       console.error(err);
@@ -28,7 +28,7 @@ export default function ChatBox({ role }) {
     if (!messageText.trim()) return;
 
     try {
-      await api.post(`/tickets/${id}/messages`, {
+      await api.post(`/api/tickets/${id}/messages`, {
         text: messageText,
       });
 
