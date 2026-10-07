@@ -21,7 +21,7 @@ function App() {
 
   const fetchTickets = async () => {
     try {
-      const res = await api.get("/tickets");
+      const res = await api.get("/api/tickets");
       setTickets(res.data);
     } catch (err) {
       console.error(err);

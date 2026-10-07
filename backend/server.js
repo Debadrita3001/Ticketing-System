@@ -160,7 +160,7 @@ app.post("/api/tickets", auth, async (req, res) => {
         error: "Missing or invalid fields",
       });
     }
-    const validCategories = ["Hardware", "Software", "Network"];
+    const validCategories = ["Hardware", "Software", "Network", "Billing", "Other"];
     const validPriorities = ["Low", "Medium", "High"];
 
     if (
